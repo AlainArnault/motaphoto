@@ -11,6 +11,9 @@
             ]);
         ?>
     </div>
+    
+    <!-- Appeler le fichier de la modale -->
+    <?php get_template_part('template-parts/contact-modal'); ?>
 </footer>
 
 </body>

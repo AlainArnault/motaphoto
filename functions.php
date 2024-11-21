@@ -28,3 +28,15 @@ function register_footer_menu() {
     register_nav_menu( 'footer-menu', __( 'Menu bas de page', 'text-domain' ) );
 }
 add_action( 'after_setup_theme', 'register_footer_menu' );
+
+// Ajouter le js de la modale
+function ajouter_scripts_modale() {
+    wp_enqueue_script(
+        'contact-modal-script',
+        get_template_directory_uri() . '/js/scripts.js',
+        array('jquery'),
+        null,
+        true
+    );
+}
+add_action('wp_enqueue_scripts', 'ajouter_scripts_modale');
