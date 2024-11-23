@@ -2,6 +2,7 @@
 // Ajouter le feuille de Style
 function motaphoto_enqueue_styles() {
     wp_enqueue_style('motaphoto-style', get_stylesheet_uri());
+    wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css' );
 }
 add_action('wp_enqueue_scripts', 'motaphoto_enqueue_styles');
 
@@ -40,3 +41,5 @@ function ajouter_scripts_modale() {
     );
 }
 add_action('wp_enqueue_scripts', 'ajouter_scripts_modale');
+
+

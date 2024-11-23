@@ -6,13 +6,14 @@ header {
   margin: 0 auto; /* Centre le header horizontalement */
   display: flex;
   align-items: center;
-  padding: 0 146px; /* Ajoute un padding de 146px à gauche et à droite */
 }
 header nav {
   display: flex;
   justify-content: space-between; /* Sépare le logo et le menu */
   width: 100%; /* Prend toute la largeur disponible dans le header */
+  max-width: 1440px;
   align-items: center;
+  padding: 0 146px;
 }
 header nav a {
   text-decoration: none; /* Enlever le soulignement des liens */
@@ -35,7 +36,6 @@ header nav ul li {
 header .logo {
   width: 216px;
   height: auto;
-  flex-shrink: 0; /* Empêche le logo de se réduire */
 }
 
 footer {
@@ -143,7 +143,7 @@ footer .footer-container .footer-menu li a {
 #contact-modal .modal-content form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 1px;
   align-items: center;
   width: 100%;
 }
@@ -159,8 +159,7 @@ footer .footer-container .footer-menu li a {
   height: 40px;
   border: 1px solid #ccc;
   border-radius: 8px;
-  margin-top: 23px;
-  padding: 10px;
+  padding-left: 10px;
   font-size: 14px;
 }
 #contact-modal .modal-content form .message-input {
@@ -168,8 +167,7 @@ footer .footer-container .footer-menu li a {
   height: 210px;
   border: 1px solid #ccc;
   border-radius: 8px;
-  margin-top: 23px;
-  padding: 10px;
+  padding-left: 10px;
   font-size: 14px;
   resize: none;
 }
@@ -254,19 +252,23 @@ h2 {
   font-size: 66px;
   font-weight: 400;
   font-style: italic;
+  line-height: 60px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
 }
 
 h3 {
   font-family: "Space Mono";
   font-size: 18px;
   font-weight: 400;
+  text-transform: uppercase;
 }
 
-.description-photos {
+.photo-description {
   font-family: "Space Mono";
   font-size: 14px;
   font-weight: 400;
-  font-style: italic;
+  text-transform: uppercase;
   letter-spacing: 0.1em;
 }
 

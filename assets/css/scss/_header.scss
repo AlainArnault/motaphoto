@@ -5,13 +5,15 @@ header {
     margin: 0 auto; /* Centre le header horizontalement */
     display: flex;
     align-items: center;
-    padding: 0 146px; /* Ajoute un padding de 146px à gauche et à droite */
+    
 
     nav {
         display: flex;
         justify-content: space-between; /* Sépare le logo et le menu */
         width: 100%;  /* Prend toute la largeur disponible dans le header */
+        max-width: 1440px;
         align-items: center;
+        padding: 0 146px;
 
         a {
             text-decoration: none; /* Enlever le soulignement des liens */
@@ -38,7 +40,7 @@ header {
     .logo {
         width: 216px;
         height: auto;
-        flex-shrink: 0; /* Empêche le logo de se réduire */
+        //flex-shrink: 0; /* Empêche le logo de se réduire */
     }
 }
 

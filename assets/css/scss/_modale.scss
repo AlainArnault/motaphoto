@@ -72,7 +72,7 @@
         form {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 1px;
             align-items: center;
             width: 100%;
 
@@ -89,8 +89,8 @@
                 height: 40px;
                 border: 1px solid #ccc;
                 border-radius: 8px;
-                margin-top: 23px;
-                padding: 10px;
+                //margin-top: 23px;
+                padding-left: 10px;
                 font-size: 14px;
             }
 
@@ -99,8 +99,8 @@
                 height: 210px;
                 border: 1px solid #ccc;
                 border-radius: 8px;
-                margin-top: 23px;
-                padding: 10px;
+                //margin-top: 23px;
+                padding-left: 10px;
                 font-size: 14px;
                 resize: none;
             }
