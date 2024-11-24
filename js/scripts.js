@@ -1,32 +1,33 @@
 // Script pour la modale de contact
+jQuery(document).ready(function ($) {
+    // Cibler tous les liens de contact
+    const contactLinks = $('.contactlink a, #contact-photo');
+    const modal = $('#contact-modal');
+    const photoRefField = $('#photo-ref'); // Champ du formulaire Contact Form 7.
 
-document.addEventListener('DOMContentLoaded', () => {
-    const contactLink = document.querySelector('.contactlink a');
-    const modal = document.getElementById('contact-modal');
-    const closeBtn = modal.querySelector('.close-btn');
-    const modalOverlay = modal.querySelector('.modal-overlay'); // L'overlay (fond sombre)
+    // Gérer les clics sur les liens de contact
+    contactLinks.on('click', function (event) {
+        event.preventDefault();
 
-    if (contactLink && modal) {
-        // Afficher la modale lorsqu'on clique sur le lien
-        contactLink.addEventListener('click', (event) => {
-            event.preventDefault();
-            modal.classList.add('show');
-            document.body.classList.add('modal-open'); // Empêche le scroll
-        });
+        const ref = $(this).data('ref'); // Récupérer la référence via l'attribut data-ref.
+        if (photoRefField.length && ref) {
+            photoRefField.val(ref); // Préremplir le champ avec la référence.
+        } else if (photoRefField.length) {
+            photoRefField.val(''); // Réinitialiser si aucune référence n'est fournie.
+        }
 
-        // Fermer la modale lorsqu'on clique sur le bouton de fermeture
-        closeBtn.addEventListener('click', () => {
-            modal.classList.remove('show');
-            document.body.classList.remove('modal-open'); // Réactive le scroll
-        });
+        // Afficher la modale
+        modal.addClass('show');
+        $('body').addClass('modal-open'); // Empêche le scroll.
+    });
 
-        // Fermer la modale lorsqu'on clique sur l'overlay (fond sombre)
-        modalOverlay.addEventListener('click', () => {
-            modal.classList.remove('show');
-            document.body.classList.remove('modal-open');
-        });
-    }
+    // Fermer la modale lorsqu'on clique sur le bouton de fermeture ou l'overlay
+    $('.close-btn, .modal-overlay').on('click', function () {
+        modal.removeClass('show');
+        $('body').removeClass('modal-open'); // Réactive le scroll.
+    });
 });
+
 
 // Script pour la navigation entre photos
 

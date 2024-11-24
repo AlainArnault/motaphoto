@@ -86,7 +86,7 @@ footer .footer-container .footer-menu li a {
   /* Overlay (fond sombre) */
   /* Contenu de la modale */
   /* Afficher la modale */
-  /* Ajouter l'effet de disparition (si nécessaire pour le JS) */
+  /* Ajouter l'effet de disparition */
 }
 #contact-modal .modal-overlay {
   position: fixed;
@@ -202,7 +202,7 @@ footer .footer-container .footer-menu li a {
   pointer-events: auto;
 }
 #contact-modal.disappearing {
-  display: block; /* S'assurer que la modale est visible pendant la disparition */
+  display: block;
   opacity: 1;
   pointer-events: auto;
 }
@@ -276,6 +276,223 @@ p {
   font-family: "Poppins";
   font-size: 14px;
   font-weight: 300;
+}
+
+.photo-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 120px;
+  grid-template-areas: "photo-info photo-image-container" "photo-actions photo-actions";
+  min-height: 100vh;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+.photo-page .photo-info {
+  grid-area: photo-info;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  box-sizing: border-box;
+  overflow-y: auto;
+  padding-left: 5px;
+  padding-bottom: 20px;
+  width: 100%;
+  max-width: 720px;
+  border-bottom: 1px solid black;
+}
+.photo-page .photo-image-container {
+  grid-area: photo-image-container;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  width: 100%;
+  max-width: 720px;
+}
+.photo-page .photo-image-container img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.photo-page .photo-actions {
+  grid-area: photo-actions;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 1440px;
+  height: 118px;
+  border-bottom: 1px solid black;
+  position: relative;
+}
+.photo-page .photo-actions .contact-us {
+  display: flex;
+  flex-direction: row;
+  padding: 0 5px;
+  justify-content: space-between;
+  align-items: center;
+  width: 50%;
+}
+.photo-page .photo-actions .contact-us .contact-link {
+  font-family: "Space Mono";
+  font-size: 12px;
+  font-weight: 400;
+  text-decoration: none;
+  color: black;
+  background-color: #D8D8D8;
+  border-radius: 4px;
+  width: 270px;
+  height: 50px;
+  align-content: center;
+  text-align: center;
+}
+.photo-page .photo-actions .contact-us .contact-link:hover {
+  cursor: pointer;
+}
+.photo-page .photo-actions .navigation {
+  display: flex;
+  gap: 10px;
+  margin-left: auto;
+  align-self: flex-end;
+  padding-bottom: 10px;
+  gap: 50px;
+}
+.photo-page .photo-actions .navigation a {
+  display: inline-block;
+  color: black;
+  text-decoration: none;
+}
+.photo-page .photo-actions .navigation a:hover {
+  cursor: pointer;
+}
+.photo-page .photo-actions #thumbnail-preview {
+  position: absolute;
+  width: 70px; /* Taille de la miniature */
+  height: 70px;
+  background-size: cover;
+  background-position: center;
+  display: none; /* Caché par défaut */
+  z-index: 10;
+  align-self: flex-start;
+  right: 0;
+  margin-top: 20px;
+  margin-right: 6px;
+}
+.photo-page .photo-actions .nav-link:hover + #thumbnail-preview {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .photo-page {
+    grid-template-columns: 1fr;
+    grid-template-areas: "photo-info" "photo-image-container" "photo-actions";
+    align-items: stretch;
+  }
+  .photo-info,
+  .photo-image-container {
+    width: 100%;
+    padding: 10px;
+  }
+  .photo-actions {
+    flex-direction: column;
+    height: auto;
+  }
+  .photo-actions .contact-link {
+    margin-bottom: 10px;
+  }
+  .photo-actions .navigation {
+    justify-content: center;
+  }
+}
+.related-photos {
+  max-width: 1440px;
+  margin: 100px auto;
+  /* Ajout d'un filtre noir de 50% au survol */
+  /* Montrer le filtre noir au survol */
+  /* Photo overlay visible au survol de photo-item */
+  /* Centrer l'icône œil */
+  /* L'icône plein écran reste en haut à droite */
+}
+.related-photos .photo-gallery {
+  display: flex;
+  gap: 20px;
+  padding-top: 30px;
+}
+.related-photos .photo-item {
+  position: relative;
+  width: 50%; /* Deux photos côte à côte */
+  height: 500px; /* Hauteur fixe de chaque photo */
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.related-photos .related-photo {
+  width: 100%; /* L'image prend toute la largeur disponible */
+  height: 100%; /* L'image remplit toute la hauteur de la photo-item */
+  object-fit: cover; /* L'image s'adapte à la boîte sans déformer l'aspect */
+}
+.related-photos .photo-item::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Filtre noir avec opacité de 50% */
+  opacity: 0; /* Invisible par défaut */
+  transition: opacity 0.3s ease;
+  z-index: 5; /* Assurez-vous que le filtre est derrière l'overlay */
+}
+.related-photos .photo-item:hover::after {
+  opacity: 1;
+}
+.related-photos .photo-item:hover .photo-overlay {
+  opacity: 1;
+}
+.related-photos .photo-overlay {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 10px;
+  opacity: 0; /* Invisible par défaut */
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+.related-photos .eye-icon, .related-photos .fullscreen-icon {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  text-decoration: none;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.related-photos .eye-icon:hover, .related-photos .fullscreen-icon:hover {
+  background-color: rgb(0, 0, 0);
+  text-decoration: none;
+}
+.related-photos .eye-icon {
+  position: absolute;
+  font-size: 45px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 15;
+}
+.related-photos .fullscreen-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 15;
 }
 
 /*# sourceMappingURL=style.css.map */

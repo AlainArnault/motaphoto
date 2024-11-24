@@ -144,9 +144,9 @@
         }
     }
 
-    /* Ajouter l'effet de disparition (si nécessaire pour le JS) */
+    /* Ajouter l'effet de disparition */
     &.disappearing {
-        display: block; /* S'assurer que la modale est visible pendant la disparition */
+        display: block;
         opacity: 1;
         pointer-events: auto;
 
