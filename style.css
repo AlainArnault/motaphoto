@@ -347,6 +347,8 @@ p {
 }
 .photo-page .photo-actions .contact-us .contact-link:hover {
   cursor: pointer;
+  background-color: black;
+  color: white;
 }
 .photo-page .photo-actions .navigation {
   display: flex;
@@ -379,6 +381,14 @@ p {
 }
 .photo-page .photo-actions .nav-link:hover + #thumbnail-preview {
   display: block;
+}
+.photo-page .photo-actions .nav-link i {
+  font-size: 16px;
+  transition: transform 0.3s, color 0.3s;
+}
+.photo-page .photo-actions .nav-link:hover i {
+  transform: scale(1.2);
+  color: #E00000;
 }
 
 @media (max-width: 768px) {
@@ -479,6 +489,7 @@ p {
 .related-photos .eye-icon:hover, .related-photos .fullscreen-icon:hover {
   background-color: rgb(0, 0, 0);
   text-decoration: none;
+  border: 2px solid white;
 }
 .related-photos .eye-icon {
   position: absolute;

@@ -52,7 +52,7 @@ while ( have_posts() ) :
                     <a href="<?php echo get_permalink($prev_post); ?>" 
                        class="nav-link prev" 
                        data-thumbnail="<?php echo get_the_post_thumbnail_url($prev_post, 'thumbnail'); ?>">
-                        &#8592; <!-- Flèche gauche -->
+                       <i class="fa fa-arrow-left"></i>  <!-- Flèche gauche -->
                     </a>
                 <?php endif; ?>
 
@@ -60,7 +60,7 @@ while ( have_posts() ) :
                     <a href="<?php echo get_permalink($next_post); ?>" 
                        class="nav-link next" 
                        data-thumbnail="<?php echo get_the_post_thumbnail_url($next_post, 'thumbnail'); ?>">
-                        &#8594; <!-- Flèche droite -->
+                       <i class="fa fa-arrow-right"></i>  <!-- Flèche droite -->
                     </a>
                 <?php endif; ?>
             </div>
@@ -97,27 +97,16 @@ while ( have_posts() ) :
         echo '<h3>Vous aimerez aussi</h3>';
         echo '<div class="photo-gallery">';
         
-        while ($related_photos->have_posts()) : $related_photos->the_post(); ?>
-            <div class="photo-item">
-                <?php if (has_post_thumbnail()) : ?>
-                    <img src="<?php echo get_the_post_thumbnail_url(null, 'large'); ?>" alt="<?php the_title(); ?>" class="related-photo">
-                <?php endif; ?>
-                <div class="photo-overlay">
-                    <a href="<?php the_permalink(); ?>" class="eye-icon">
-                        <i class="fa fa-eye"></i> <!-- Icône œil -->
-                    </a>
-                    <a href="#" class="fullscreen-icon">
-                        <i class="fa fa-expand"></i> <!-- Icône plein écran -->
-                    </a>
-                </div>
-            </div>
-        <?php endwhile; ?>
-        
-        </div> <!-- .photo-gallery -->
-        </div> <!-- .related-photos -->
-    <?php
+        while ($related_photos->have_posts()) : $related_photos->the_post();
+            get_template_part('template-parts/photo_block');
+        endwhile;
+    
+        echo '</div>'; // .photo-gallery
+        echo '</div>'; // .related-photos
+    
         wp_reset_postdata(); // Réinitialiser la requête
     endif;
+    
 
 get_footer();
 ?>
