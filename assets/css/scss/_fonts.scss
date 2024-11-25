@@ -3,6 +3,10 @@ h1 {
     font-size: 96px;
     font-weight: 700;
     font-style: italic;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 1px white;
+    text-stroke: 1px white;
 }
 
 h2{

@@ -1,4 +1,24 @@
 @charset "UTF-8";
+.hero {
+  position: relative;
+  width: 100%;
+  max-width: 1440px;
+  height: 970px; /* Pleine hauteur de l'écran */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0 auto;
+}
+.hero .hero-content {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+}
+
 header {
   height: 80px;
   width: 100%; /* Utiliser la pleine largeur de l'écran */
@@ -245,6 +265,10 @@ h1 {
   font-size: 96px;
   font-weight: 700;
   font-style: italic;
+  text-transform: uppercase;
+  color: transparent;
+  -webkit-text-stroke: 1px white;
+  text-stroke: 1px white;
 }
 
 h2 {
