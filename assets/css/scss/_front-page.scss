@@ -46,3 +46,59 @@
 }
 
 // Filters et tri
+.photo-filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10vh;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1440px;
+
+    form {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+
+        .filters-group {
+            display: flex;
+            gap: 10px;
+
+            &.filters-left {
+                justify-content: flex-start;
+            }
+
+            &.filters-right {
+                justify-content: flex-end;
+            }
+
+            select {
+                width: 10vw;
+                height: 5vh;
+                padding: 8px 12px;
+                border: 1.3px solid #B8BBC2;
+                border-radius: 8px;
+                background: white;
+                color: black;
+                font-family: 'Poppins';
+                font-size: 18px;
+                font-weight: 500;
+                text-transform: uppercase;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .photo-filters {
+        form {
+            flex-direction: column;
+
+            .filters-group {
+                justify-content: center;
+                margin-bottom: 10px;
+            }
+        }
+    }
+}

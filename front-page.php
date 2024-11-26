@@ -38,7 +38,51 @@ $background_image_url = $background_image_url ?? get_template_directory_uri() . 
     </div>
 
 
-<!-- Filtres et Tri -->
+<!-- Filtres de Tri -->
+<div class="photo-filters">
+    <form id="photo-filters-form">
+        <div class="filters-group filters-left">
+            <!-- Filtre par Catégorie -->
+            <select name="category" id="filter-category">
+                <option value="">Toutes les catégories</option>
+                <?php
+                $categories = get_terms(array(
+                    'taxonomy' => 'categories',
+                    'hide_empty' => false,
+                ));
+
+                foreach ($categories as $category) {
+                    echo '<option value="' . esc_attr($category->term_id) . '">' . esc_html($category->name) . '</option>';
+                }
+                ?>
+            </select>
+
+            <!-- Filtre par Format -->
+            <select name="format" id="filter-format">
+                <option value="">Tous les formats</option>
+                <?php
+                $formats = get_terms(array(
+                    'taxonomy' => 'format',
+                    'hide_empty' => false,
+                ));
+
+                foreach ($formats as $format) {
+                    echo '<option value="' . esc_attr($format->term_id) . '">' . esc_html($format->name) . '</option>';
+                }
+                ?>
+            </select>
+        </div>
+
+        <div class="filters-group filters-right">
+            <!-- Filtre par Date -->
+            <select name="date" id="filter-date">
+                <option value="">Toutes les dates</option>
+                <option value="desc">Du plus récent au plus ancien</option>
+                <option value="asc">Du plus ancien au plus récent</option>
+            </select>
+        </div>
+    </form>
+</div>
 
 
 <!-- Liste des photos -->
