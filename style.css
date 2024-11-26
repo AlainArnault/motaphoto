@@ -19,6 +19,31 @@
   color: #fff;
 }
 
+#load-more {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10vw;
+  height: 5vh;
+  background-color: #D8D8D8;
+  font-family: "Space Mono";
+  font-size: 12px;
+  font-weight: 400;
+  color: black;
+  border: none;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-top: 1vh;
+}
+
+#load-more:hover {
+  background-color: black;
+  color: white;
+}
+
 header {
   height: 80px;
   width: 100%; /* Utiliser la pleine largeur de l'écran */
@@ -446,6 +471,7 @@ p {
 .related-photos, .photos-list {
   max-width: 1440px;
   margin: 100px auto;
+  position: relative;
   /* Ajout d'un filtre noir de 50% au survol */
   /* Montrer le filtre noir au survol */
   /* Photo overlay visible au survol de photo-item */
@@ -467,9 +493,9 @@ p {
   align-items: center;
 }
 .related-photos .related-photo, .photos-list .related-photo {
-  width: 100%; /* L'image prend toute la largeur disponible */
-  height: 100%; /* L'image remplit toute la hauteur de la photo-item */
-  object-fit: cover; /* L'image s'adapte à la boîte sans déformer l'aspect */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .related-photos .photo-item::after, .photos-list .photo-item::after {
   content: "";
@@ -478,10 +504,10 @@ p {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5); /* Filtre noir avec opacité de 50% */
-  opacity: 0; /* Invisible par défaut */
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
   transition: opacity 0.3s ease;
-  z-index: 5; /* Assurez-vous que le filtre est derrière l'overlay */
+  z-index: 5;
 }
 .related-photos .photo-item:hover::after, .photos-list .photo-item:hover::after {
   opacity: 1;

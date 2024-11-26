@@ -2,6 +2,7 @@
  .related-photos, .photos-list {
     max-width: 1440px;
     margin: 100px auto;
+    position: relative;
 
     .photo-gallery {
         display: grid;
@@ -20,9 +21,9 @@
     }
 
     .related-photo {
-        width: 100%; /* L'image prend toute la largeur disponible */
-        height: 100%; /* L'image remplit toute la hauteur de la photo-item */
-        object-fit: cover; /* L'image s'adapte à la boîte sans déformer l'aspect */
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
     /* Ajout d'un filtre noir de 50% au survol */
@@ -33,10 +34,10 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: rgba(0, 0, 0, 0.5); /* Filtre noir avec opacité de 50% */
-        opacity: 0; /* Invisible par défaut */
+        background-color: rgba(0, 0, 0, 0.5);
+        opacity: 0;
         transition: opacity 0.3s ease;
-        z-index: 5; /* Assurez-vous que le filtre est derrière l'overlay */
+        z-index: 5;
     }
 
     /* Montrer le filtre noir au survol */

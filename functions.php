@@ -42,7 +42,7 @@ function ajouter_scripts_modale() {
 }
 add_action('wp_enqueue_scripts', 'ajouter_scripts_modale');
 
-// Charger plus de front-page
+// Fonction pour charger plus de photos (bouton et pagination infinie) 
 function load_more_photos() {
     // Vérification du nonce pour la sécurité
     check_ajax_referer('load_more_nonce', 'nonce');
@@ -83,14 +83,16 @@ function load_more_photos() {
 
     wp_die(); // Fin du script pour éviter tout autre contenu
 }
-add_action('wp_ajax_load_more_photos', 'load_more_photos');
+
+// Ajout des hooks pour le callback AJAX
+add_action('wp_ajax_load_more_photos', 'load_more_photos'); 
 add_action('wp_ajax_nopriv_load_more_photos', 'load_more_photos'); // Pour les utilisateurs non connectés
 
-
+// Enregistrement du script JS pour charger plus de photos
 function enqueue_load_more_script() {
     wp_enqueue_script(
         'load-more-script',
-        get_template_directory_uri() . '/js/load-more.js',
+        get_template_directory_uri() . '/js/load-more.js', // Chemin vers ton fichier JS
         array('jquery'),
         null,
         true
@@ -102,5 +104,3 @@ function enqueue_load_more_script() {
     ));
 }
 add_action('wp_enqueue_scripts', 'enqueue_load_more_script');
-
-
