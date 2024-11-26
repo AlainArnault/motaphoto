@@ -42,4 +42,65 @@ function ajouter_scripts_modale() {
 }
 add_action('wp_enqueue_scripts', 'ajouter_scripts_modale');
 
+// Charger plus de front-page
+function load_more_photos() {
+    // Vérification du nonce pour la sécurité
+    check_ajax_referer('load_more_nonce', 'nonce');
+
+    // Récupérer la page demandée
+    $page = isset($_POST['page']) ? intval($_POST['page']) : 1;
+
+    // Définir les arguments de WP_Query
+    $args_load_more = array(
+        'post_type' => 'photos',
+        'posts_per_page' => 8, // Nombre de photos à charger
+        'paged' => $page,
+        'orderby' => 'date',
+        'order' => 'DESC',
+    );
+
+    $query_load_more = new WP_Query($args_load_more);
+
+    if ($query_load_more->have_posts()) {
+        ob_start(); // Commence la capture de la sortie HTML
+
+        while ($query_load_more->have_posts()) {
+            $query_load_more->the_post();
+
+            // Inclure le template part pour chaque photo
+            get_template_part('template-parts/photo_block');
+        }
+
+        $html = ob_get_clean(); // Récupère le HTML généré
+
+        wp_send_json_success(array(
+            'html' => $html,
+            'page' => $page + 1, // Prépare la page suivante
+        ));
+    } else {
+        wp_send_json_error(); // Si pas de contenu à charger
+    }
+
+    wp_die(); // Fin du script pour éviter tout autre contenu
+}
+add_action('wp_ajax_load_more_photos', 'load_more_photos');
+add_action('wp_ajax_nopriv_load_more_photos', 'load_more_photos'); // Pour les utilisateurs non connectés
+
+
+function enqueue_load_more_script() {
+    wp_enqueue_script(
+        'load-more-script',
+        get_template_directory_uri() . '/js/load-more.js',
+        array('jquery'),
+        null,
+        true
+    );
+
+    wp_localize_script('load-more-script', 'loadMore', array(
+        'ajax_url' => admin_url('admin-ajax.php'), // URL pour AJAX
+        'nonce' => wp_create_nonce('load_more_nonce'), // Génération du nonce
+    ));
+}
+add_action('wp_enqueue_scripts', 'enqueue_load_more_script');
+
 

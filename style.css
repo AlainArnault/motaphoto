@@ -36,8 +36,8 @@ header nav {
   padding: 0 146px;
 }
 header nav a {
-  text-decoration: none; /* Enlever le soulignement des liens */
-  color: inherit; /* Hérite de la couleur de son parent (facultatif) */
+  text-decoration: none;
+  color: inherit;
 }
 header nav ul {
   display: flex;
@@ -53,9 +53,13 @@ header nav ul li {
   font-weight: 400;
   margin: 0 20px;
 }
+header nav ul li:hover {
+  font-weight: 700;
+}
 header .logo {
   width: 216px;
   height: auto;
+  flex-shrink: 0; /* Empêche le logo de se réduire */
 }
 
 footer {
@@ -376,43 +380,45 @@ p {
 }
 .photo-page .photo-actions .navigation {
   display: flex;
-  gap: 10px;
+  gap: 20px;
   margin-left: auto;
   align-self: flex-end;
   padding-bottom: 10px;
-  gap: 50px;
+  position: relative;
 }
 .photo-page .photo-actions .navigation a {
   display: inline-block;
+  font-family: "Space mono";
+  font-size: 12px;
+  font-weight: 400;
   color: black;
   text-decoration: none;
 }
 .photo-page .photo-actions .navigation a:hover {
   cursor: pointer;
+  font-weight: 700;
 }
 .photo-page .photo-actions #thumbnail-preview {
   position: absolute;
-  width: 70px; /* Taille de la miniature */
-  height: 70px;
+  width: 80px; /* Taille de la miniature */
+  height: 80px;
   background-size: cover;
   background-position: center;
   display: none; /* Caché par défaut */
   z-index: 10;
-  align-self: flex-start;
-  right: 0;
-  margin-top: 20px;
-  margin-right: 6px;
+  left: 50%; /* Centre horizontalement par rapport à .navigation */
+  transform: translateX(-50%); /* Ajuste pour parfaitement centrer */
+  bottom: 100%; /* Positionne la miniature au-dessus */
+  margin-bottom: 10px;
 }
 .photo-page .photo-actions .nav-link:hover + #thumbnail-preview {
   display: block;
 }
 .photo-page .photo-actions .nav-link i {
-  font-size: 16px;
-  transition: transform 0.3s, color 0.3s;
+  font-size: 12px;
 }
 .photo-page .photo-actions .nav-link:hover i {
-  transform: scale(1.2);
-  color: #E00000;
+  font-weight: bold;
 }
 
 @media (max-width: 768px) {
@@ -437,7 +443,7 @@ p {
     justify-content: center;
   }
 }
-.related-photos {
+.related-photos, .photos-list {
   max-width: 1440px;
   margin: 100px auto;
   /* Ajout d'un filtre noir de 50% au survol */
@@ -446,26 +452,26 @@ p {
   /* Centrer l'icône œil */
   /* L'icône plein écran reste en haut à droite */
 }
-.related-photos .photo-gallery {
-  display: flex;
+.related-photos .photo-gallery, .photos-list .photo-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
   padding-top: 30px;
 }
-.related-photos .photo-item {
+.related-photos .photo-item, .photos-list .photo-item {
   position: relative;
-  width: 50%; /* Deux photos côte à côte */
-  height: 500px; /* Hauteur fixe de chaque photo */
+  aspect-ratio: 1/1;
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.related-photos .related-photo {
+.related-photos .related-photo, .photos-list .related-photo {
   width: 100%; /* L'image prend toute la largeur disponible */
   height: 100%; /* L'image remplit toute la hauteur de la photo-item */
   object-fit: cover; /* L'image s'adapte à la boîte sans déformer l'aspect */
 }
-.related-photos .photo-item::after {
+.related-photos .photo-item::after, .photos-list .photo-item::after {
   content: "";
   position: absolute;
   top: 0;
@@ -477,13 +483,13 @@ p {
   transition: opacity 0.3s ease;
   z-index: 5; /* Assurez-vous que le filtre est derrière l'overlay */
 }
-.related-photos .photo-item:hover::after {
+.related-photos .photo-item:hover::after, .photos-list .photo-item:hover::after {
   opacity: 1;
 }
-.related-photos .photo-item:hover .photo-overlay {
+.related-photos .photo-item:hover .photo-overlay, .photos-list .photo-item:hover .photo-overlay {
   opacity: 1;
 }
-.related-photos .photo-overlay {
+.related-photos .photo-overlay, .photos-list .photo-overlay {
   position: absolute;
   top: 10px;
   left: 10px;
@@ -497,7 +503,7 @@ p {
   transition: opacity 0.3s ease;
   z-index: 10;
 }
-.related-photos .eye-icon, .related-photos .fullscreen-icon {
+.related-photos .eye-icon, .related-photos .fullscreen-icon, .photos-list .eye-icon, .photos-list .fullscreen-icon {
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
   padding: 10px;
@@ -510,12 +516,12 @@ p {
   justify-content: center;
   align-items: center;
 }
-.related-photos .eye-icon:hover, .related-photos .fullscreen-icon:hover {
+.related-photos .eye-icon:hover, .related-photos .fullscreen-icon:hover, .photos-list .eye-icon:hover, .photos-list .fullscreen-icon:hover {
   background-color: rgb(0, 0, 0);
   text-decoration: none;
   border: 2px solid white;
 }
-.related-photos .eye-icon {
+.related-photos .eye-icon, .photos-list .eye-icon {
   position: absolute;
   font-size: 45px;
   top: 50%;
@@ -523,7 +529,7 @@ p {
   transform: translate(-50%, -50%);
   z-index: 15;
 }
-.related-photos .fullscreen-icon {
+.related-photos .fullscreen-icon, .photos-list .fullscreen-icon {
   position: absolute;
   top: 10px;
   right: 10px;

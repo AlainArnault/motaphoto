@@ -52,7 +52,7 @@ while ( have_posts() ) :
                     <a href="<?php echo get_permalink($prev_post); ?>" 
                        class="nav-link prev" 
                        data-thumbnail="<?php echo get_the_post_thumbnail_url($prev_post, 'thumbnail'); ?>">
-                       <i class="fa fa-arrow-left"></i>  <!-- Flèche gauche -->
+                       <i class="fa-solid fa-arrow-left-long"></i> Précédente  <!-- Flèche gauche -->
                     </a>
                 <?php endif; ?>
 
@@ -60,11 +60,11 @@ while ( have_posts() ) :
                     <a href="<?php echo get_permalink($next_post); ?>" 
                        class="nav-link next" 
                        data-thumbnail="<?php echo get_the_post_thumbnail_url($next_post, 'thumbnail'); ?>">
-                       <i class="fa fa-arrow-right"></i>  <!-- Flèche droite -->
+                       Suivante <i class="fa-solid fa-arrow-right-long"></i>  <!-- Flèche droite -->
                     </a>
                 <?php endif; ?>
+                <div id="thumbnail-preview"></div>
             </div>
-            <div id="thumbnail-preview"></div>
         </div>
     </div>
 
@@ -76,7 +76,7 @@ while ( have_posts() ) :
     $category_ids = wp_list_pluck($category, 'term_id');
 
     // Créer la requête pour récupérer deux photos de la même catégorie
-    $args = array(
+    $args_related_photos = array(
         'post_type' => 'photos',
         'posts_per_page' => 2,
         'post__not_in' => array(get_the_ID()),
@@ -90,7 +90,7 @@ while ( have_posts() ) :
         ),
     );
 
-    $related_photos = new WP_Query($args);
+    $related_photos = new WP_Query($args_related_photos);
 
     if ($related_photos->have_posts()) :
         echo '<div class="related-photos">';

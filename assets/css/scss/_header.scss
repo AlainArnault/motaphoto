@@ -16,8 +16,8 @@ header {
         padding: 0 146px;
 
         a {
-            text-decoration: none; /* Enlever le soulignement des liens */
-            color: inherit; /* Hérite de la couleur de son parent (facultatif) */
+            text-decoration: none; 
+            color: inherit;
         }
 
         ul {
@@ -33,6 +33,9 @@ header {
                 font-size: 16px;
                 font-weight: 400;
                 margin: 0 20px;
+                &:hover {
+                    font-weight: 700;
+                }
             }
         }
     }
@@ -40,7 +43,7 @@ header {
     .logo {
         width: 216px;
         height: auto;
-        //flex-shrink: 0; /* Empêche le logo de se réduire */
+        flex-shrink: 0; /* Empêche le logo de se réduire */
     }
 }
 
