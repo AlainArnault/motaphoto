@@ -37,8 +37,12 @@ $background_image_url = $background_image_url ?? get_template_directory_uri() . 
         </div>
     </div>
 
+
+<!-- Filtres et Tri -->
+
+
+<!-- Liste des photos -->
 <?php
-// liste des photos
 $args_photo_list = array(
     'post_type' => 'photos',
     'posts_per_page' => 8, // Afficher les 8 premières photos

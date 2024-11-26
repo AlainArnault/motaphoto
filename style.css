@@ -38,7 +38,6 @@
   cursor: pointer;
   margin-top: 1vh;
 }
-
 #load-more:hover {
   background-color: black;
   color: white;
@@ -470,7 +469,10 @@ p {
 }
 .related-photos, .photos-list {
   max-width: 1440px;
-  margin: 100px auto;
+  margin-top: 30px;
+  margin-bottom: 100px;
+  margin-left: auto;
+  margin-right: auto;
   position: relative;
   /* Ajout d'un filtre noir de 50% au survol */
   /* Montrer le filtre noir au survol */

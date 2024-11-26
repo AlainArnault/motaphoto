@@ -1,3 +1,4 @@
+//Hero
 .hero {
     position: relative;
     width: 100%;
@@ -19,6 +20,7 @@
     }
 }
 
+// Charger plus
 #load-more {
     position: absolute;
     left: 50%;
@@ -37,9 +39,10 @@
     align-items: center;
     cursor: pointer;
     margin-top: 1vh;
-}
-
-#load-more:hover {
+    &:hover {
     background-color: black;
     color: white;
+    }
 }
+
+// Filters et tri

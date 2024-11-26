@@ -104,3 +104,6 @@ function enqueue_load_more_script() {
     ));
 }
 add_action('wp_enqueue_scripts', 'enqueue_load_more_script');
+
+
+// Filtres et tri
