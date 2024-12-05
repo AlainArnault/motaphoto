@@ -106,7 +106,6 @@ while ( have_posts() ) :
     
         wp_reset_postdata(); // Réinitialiser la requête
     endif;
-    
 
 get_footer();
 ?>

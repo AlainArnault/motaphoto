@@ -1,0 +1,143 @@
+.lightbox{
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .9);
+    z-index: 9998;
+    overflow: auto;
+    animation: lightboxIn .3s;
+    display: none;
+    opacity: 0;
+    
+
+    //Overlay (fond sombre)
+    .lightbox-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7); //Fond sombre
+        z-index: 1; //Derrière le contenu
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .lightbox-navigation{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .lightbox-link-prev,
+        .lightbox-link-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            text-decoration: none;
+            color: white;
+            font-family: 'Space Mono';
+            font-weight: 400;
+            font-size: 12px;
+            z-index: 9999;
+        
+            &:hover {
+                i {
+                font-weight: bold;
+                }
+            }
+        }
+    }
+
+    .lightbox-link-prev {
+        left: 20px;
+    }
+
+    .lightbox-link-next {
+        right: 20px;
+    }
+
+    .lightbox-close {
+        position: fixed;
+        text-decoration: none;
+        color: white;
+        top: 50px;
+        right: 50px;
+        z-index: 9999;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .lightbox-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 50px;
+        margin-right: 50px;
+        min-height: 100vh;
+        z-index: 9998;
+        position: relative;
+
+        img {
+            width: 100%;
+            height: auto;
+            animation: lightboxIn .5s;
+        }
+
+        .photo-data-ref, 
+        .photo-data-cat {
+            position: absolute;
+            bottom: 20px;
+            font-family:'Space Mono';
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            color: white;
+            display: block;
+        }
+
+        .photo-data-ref {
+            left: 0;
+            bottom: 0;
+        }
+
+        .photo-data-cat {
+            right: 0;
+            bottom: 0;
+        }
+    }
+
+    /* Afficher la modale */
+    &.show {
+        display: flex; /* Rendre visible */
+        opacity: 1;
+        pointer-events: auto;
+
+        .lightbox-overlay {
+            opacity: 1;
+        }
+
+        .lightbox-content {
+            opacity: 1;
+            pointer-events: auto;
+        }
+    }
+}
+
+@keyframes lightboxIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+/* Empêche le défilement lorsque la modale est ouverte */
+.lightbox-open {
+    overflow: hidden;
+}
+
+

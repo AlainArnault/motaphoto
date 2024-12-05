@@ -14,6 +14,10 @@
     
     <!-- Appeler le fichier de la modale -->
     <?php get_template_part('template-parts/contact-modal'); ?>
+
+    <!-- Appeler le fichier de la lightbox -->
+    <?php get_template_part('template-parts/lightbox'); ?>
+
 </footer>
 
 </body>

@@ -44,7 +44,7 @@ $background_image_url = $background_image_url ?? get_template_directory_uri() . 
         <div class="filters-group filters-left">
             <!-- Filtre par Catégorie -->
             <select name="category" id="filter-category">
-                <option value="">Toutes les catégories</option>
+                <option value="">Catégories</option>
                 <?php
                 $categories = get_terms(array(
                     'taxonomy' => 'categories',
@@ -59,7 +59,7 @@ $background_image_url = $background_image_url ?? get_template_directory_uri() . 
 
             <!-- Filtre par Format -->
             <select name="format" id="filter-format">
-                <option value="">Tous les formats</option>
+                <option value="">Formats</option>
                 <?php
                 $formats = get_terms(array(
                     'taxonomy' => 'format',
@@ -76,7 +76,7 @@ $background_image_url = $background_image_url ?? get_template_directory_uri() . 
         <div class="filters-group filters-right">
             <!-- Filtre par Date -->
             <select name="date" id="filter-date">
-                <option value="">Toutes les dates</option>
+                <option value="">Dates</option>
                 <option value="desc">Du plus récent au plus ancien</option>
                 <option value="asc">Du plus ancien au plus récent</option>
             </select>

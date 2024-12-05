@@ -1,9 +1,15 @@
-//Hero
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; // Empêche le débordement horizontal
+}
+
+// Hero
 .hero {
     position: relative;
     width: 100%;
     max-width: 1440px;
-    height: 970px; /* Pleine hauteur de l'écran */
+    height: 970px; // Pleine hauteur de l'écran
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -39,9 +45,10 @@
     align-items: center;
     cursor: pointer;
     margin-top: 1vh;
+
     &:hover {
-    background-color: black;
-    color: white;
+        background-color: black;
+        color: white;
     }
 }
 
@@ -51,7 +58,7 @@
     justify-content: space-between;
     align-items: center;
     margin-top: 10vh;
-    margin-bottom: 20px;
+    margin-bottom: 2vh;
     margin-left: auto;
     margin-right: auto;
     max-width: 1440px;
@@ -63,7 +70,7 @@
 
         .filters-group {
             display: flex;
-            gap: 10px;
+            gap: 0.5vw;
 
             &.filters-left {
                 justify-content: flex-start;
@@ -75,14 +82,16 @@
 
             select {
                 width: 10vw;
-                height: 5vh;
-                padding: 8px 12px;
+                size: auto;
+                height: auto;
+                overflow: hidden;
+                padding: 0.4vw 0.6vw;
                 border: 1.3px solid #B8BBC2;
                 border-radius: 8px;
                 background: white;
                 color: black;
                 font-family: 'Poppins';
-                font-size: 18px;
+                font-size: 12px;
                 font-weight: 500;
                 text-transform: uppercase;
             }
@@ -91,14 +100,46 @@
 }
 
 @media (max-width: 768px) {
+    .hero {
+        height: 50vh;
+        background-size: cover;
+    }
+
+    .hero h1 {
+        font-size: clamp(18px, 10vw, 40px); // Ajuste la taille du texte en responsive
+    }
+
     .photo-filters {
         form {
             flex-direction: column;
+            align-items: center;
 
             .filters-group {
+                flex-direction: column;
                 justify-content: center;
                 margin-bottom: 10px;
             }
         }
+
+        select {
+            width: 70vw !important;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .filters-group {
+            display: flex;
+            flex-direction: column;
+            margin: 0.1vh !important;
+        }
+    }
+
+    #load-more {
+        width: 70vw;
+        height: 8vh;
+        font-size: 16px;
+        margin-top: 2vh;
     }
 }
+

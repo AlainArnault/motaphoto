@@ -16,9 +16,17 @@
                 <img class="logo" src="<?php echo get_template_directory_uri().'/assets/images/logo.svg'; ?>" alt="Logo Nathalie Mota">
             </a> 
 
+            <!-- Bouton burger -->
+            <button id="menu-toggle" class="menu-toggle" aria-label="Menu">
+            ☰
+            </button>
+
+        <!-- Menu principal -->
+
             <?php
                 wp_nav_menu([
-                    'theme_location' => 'main-menu'
+                    'theme_location' => 'main-menu',
+                    'menu_class' => 'menu'
                 ]);
             ?>
 

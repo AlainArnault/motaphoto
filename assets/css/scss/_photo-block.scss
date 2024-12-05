@@ -29,7 +29,7 @@
         object-fit: cover;
     }
 
-    /* Ajout d'un filtre noir de 50% au survol */
+    // Ajout d'un filtre noir de 50% au survol
     .photo-item::after {
         content: "";
         position: absolute;
@@ -43,17 +43,18 @@
         z-index: 5;
     }
 
-    /* Montrer le filtre noir au survol */
+    // Montrer le filtre noir au survol
     .photo-item:hover::after {
         opacity: 1;
     }
 
-    /* Photo overlay visible au survol de photo-item */
+    // Photo overlay visible au survol de photo-item
     .photo-item:hover .photo-overlay {
         opacity: 1;
     }
 
     .photo-overlay {
+        display: flex;
         position: absolute;
         top: 10px;
         left: 10px;
@@ -63,46 +64,80 @@
         justify-content: flex-end;
         align-items: flex-start;
         gap: 10px;
-        opacity: 0; /* Invisible par défaut */
+        opacity: 0; // Invisible par défaut
         transition: opacity 0.3s ease;
         z-index: 10;
-    }
+    
 
-    .eye-icon, .fullscreen-icon {
-        background-color: rgba(0, 0, 0, 0.5);
-        color: white;
-        padding: 10px;
-        border-radius: 50%;
-        cursor: pointer;
-        font-size: 18px;
-        text-decoration: none;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        &:hover {
-            background-color: rgba(0, 0, 0, 1);
+        .eye-icon, .fullscreen-icon {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
             text-decoration: none;
-            border: 2px solid white;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &:hover {
+                background-color: rgba(0, 0, 0, 1);
+                text-decoration: none;
+                border: 2px solid white;
+            }
+        }
+
+        // Centrer l'icône œil
+        .eye-icon {
+            position: absolute;
+            font-size: 45px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 15;
+        }
+
+        // L'icône plein écran reste en haut à droite
+        .fullscreen-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 15;
+        }
+
+        .photo-data {
+            font-family: 'Poppins';
+            font-size: 14px;
+            color: white;
+            text-transform: uppercase;
+            align-self: flex-end;
+        }
+
+        .ref {
+            margin-right: auto;
         }
     }
 
-    /* Centrer l'icône œil */
-    .eye-icon {
-        position: absolute;
-        font-size: 45px;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 15;
-    }
 
-    /* L'icône plein écran reste en haut à droite */
-    .fullscreen-icon {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        z-index: 15;
+    // Media Query pour les petits écrans
+    @media (max-width: 768px) {
+        .photo-gallery {
+            grid-template-columns: 1fr; // Une seule colonne
+        }
+ 
+        .eye-icon { // Réduction de la taille des icônes
+            font-size: 30px; // Plus petit
+            top: 50%; // Centrer verticalement
+            left: 50%; // Centrer horizontalement
+            transform: translate(-50%, -50%); // Assure que l'icône reste centrée
+        }
+
+        .fullscreen-icon {
+            font-size: 20px; // Plus petit
+            top: 10px;
+            right: 10px;
+        }
     }
 }

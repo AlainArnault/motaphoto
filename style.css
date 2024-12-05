@@ -1,9 +1,15 @@
 @charset "UTF-8";
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
 .hero {
   position: relative;
   width: 100%;
   max-width: 1440px;
-  height: 970px; /* Pleine hauteur de l'écran */
+  height: 970px;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -48,7 +54,7 @@
   justify-content: space-between;
   align-items: center;
   margin-top: 10vh;
-  margin-bottom: 20px;
+  margin-bottom: 2vh;
   margin-left: auto;
   margin-right: auto;
   max-width: 1440px;
@@ -60,7 +66,7 @@
 }
 .photo-filters form .filters-group {
   display: flex;
-  gap: 10px;
+  gap: 0.5vw;
 }
 .photo-filters form .filters-group.filters-left {
   justify-content: flex-start;
@@ -70,42 +76,80 @@
 }
 .photo-filters form .filters-group select {
   width: 10vw;
-  height: 5vh;
-  padding: 8px 12px;
+  size: auto;
+  height: auto;
+  overflow: hidden;
+  padding: 0.4vw 0.6vw;
   border: 1.3px solid #B8BBC2;
   border-radius: 8px;
   background: white;
   color: black;
   font-family: "Poppins";
-  font-size: 18px;
+  font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
 }
 
 @media (max-width: 768px) {
+  .hero {
+    height: 50vh;
+    background-size: cover;
+  }
+  .hero h1 {
+    font-size: clamp(18px, 10vw, 40px);
+  }
   .photo-filters form {
     flex-direction: column;
+    align-items: center;
   }
   .photo-filters form .filters-group {
+    flex-direction: column;
     justify-content: center;
     margin-bottom: 10px;
+  }
+  .photo-filters select {
+    width: 70vw !important;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  .photo-filters .filters-group {
+    display: flex;
+    flex-direction: column;
+    margin: 0.1vh !important;
+  }
+  #load-more {
+    width: 70vw;
+    height: 8vh;
+    font-size: 16px;
+    margin-top: 2vh;
   }
 }
 header {
   height: 80px;
-  width: 100%; /* Utiliser la pleine largeur de l'écran */
-  max-width: 1440px; /* Limiter la largeur max du header */
-  margin: 0 auto; /* Centre le header horizontalement */
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
 }
 header nav {
   display: flex;
-  justify-content: space-between; /* Sépare le logo et le menu */
-  width: 100%; /* Prend toute la largeur disponible dans le header */
+  justify-content: space-between;
+  width: 100%;
   max-width: 1440px;
   align-items: center;
-  padding: 0 146px;
+  padding: 0 4vw;
+  position: relative;
+}
+header nav .menu-toggle {
+  display: none;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: auto;
+  align-self: center;
 }
 header nav a {
   text-decoration: none;
@@ -123,48 +167,85 @@ header nav ul li {
   text-transform: uppercase;
   font-size: 16px;
   font-weight: 400;
-  margin: 0 20px;
+  margin: 0 1vw;
 }
 header nav ul li:hover {
   font-weight: 700;
 }
+@media (max-width: 768px) {
+  header nav .menu-toggle {
+    display: block;
+  }
+  header nav ul.menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 8vh;
+    right: 0;
+    width: 100%;
+    background: #E00000;
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+  }
+  header nav ul.menu li {
+    margin: 10px 0;
+    text-align: center;
+    color: white;
+    font-family: "Space mono";
+    font-size: 16px;
+    font-weight: 400;
+  }
+  header nav ul.menu.active {
+    display: flex;
+  }
+}
 header .logo {
   width: 216px;
   height: auto;
-  flex-shrink: 0; /* Empêche le logo de se réduire */
+  flex-shrink: 0;
 }
 
 footer {
   max-width: 1440px;
   height: 40px;
-  margin: 0 auto; /* Centrer le footer sur l'écran */
-  border-top: 1px solid black; /* Ligne noire de 1px en haut */
+  margin: 0 auto;
+  border-top: 1px solid black;
 }
 footer .footer-container {
   display: flex;
-  justify-content: space-around; /* Distribution des éléments */
+  justify-content: space-around;
   align-items: center;
-  text-transform: uppercase; /* Tout en majuscule */
+  text-transform: uppercase;
   font-family: "Space Mono";
   font-size: 16px;
   font-weight: 400;
   color: inherit;
   width: 100%;
-  height: 40px;
+  height: auto;
 }
 footer .footer-container .footer-menu {
   display: flex;
-  justify-content: space-between; /* Distribuer les éléments du menu */
+  justify-content: space-between;
   flex: 1;
-  padding: 0 410px;
+  padding: 0 3vw;
 }
 footer .footer-container .footer-menu li {
-  list-style: none; /* Retirer les puces des éléments du menu */
-  margin: 0 20px; /* Espacement entre les éléments */
+  list-style: none;
+  margin: 0 1vw;
 }
 footer .footer-container .footer-menu li a {
-  text-decoration: none; /* Supprimer le soulignement */
+  text-decoration: none;
   color: inherit;
+}
+@media (max-width: 768px) {
+  footer {
+    height: 90px;
+  }
+  footer .footer-menu {
+    flex-direction: column;
+    text-align: center;
+  }
 }
 
 /* Cacher la modale par défaut */
@@ -200,7 +281,7 @@ footer .footer-container .footer-menu li a {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 597px;
+  width: clamp(310px, 50vw, 597px);
   height: auto;
   background-color: white;
   z-index: 2; /* Au-dessus de l'overlay */
@@ -229,7 +310,7 @@ footer .footer-container .footer-menu li a {
   z-index: 2;
 }
 #contact-modal .modal-content img {
-  width: 896px; /* Largeur de l'image qui dépasse */
+  width: 150%; /* Largeur de l'image qui dépasse */
   position: relative;
   left: 50%;
   transform: translateX(-50%); /* Centrer l'image horizontalement */
@@ -251,7 +332,7 @@ footer .footer-container .footer-menu li a {
   margin-bottom: 5px;
 }
 #contact-modal .modal-content form .form-input {
-  width: 263px;
+  width: clamp(260px, 9vw, 300px);
   height: 40px;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -259,7 +340,7 @@ footer .footer-container .footer-menu li a {
   font-size: 14px;
 }
 #contact-modal .modal-content form .message-input {
-  width: 263px;
+  width: clamp(260px, 9vw, 300px);
   height: 210px;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -310,7 +391,7 @@ footer .footer-container .footer-menu li a {
 }
 
 /* Empêche le défilement lorsque la modale est ouverte */
-body.modal-open {
+.modal-open {
   overflow: hidden;
 }
 
@@ -338,7 +419,7 @@ body.modal-open {
 }
 h1 {
   font-family: "Space Mono";
-  font-size: 96px;
+  font-size: clamp(60px, 6vw, 96px);
   font-weight: 700;
   font-style: italic;
   text-transform: uppercase;
@@ -472,15 +553,15 @@ p {
 }
 .photo-page .photo-actions #thumbnail-preview {
   position: absolute;
-  width: 80px; /* Taille de la miniature */
+  width: 80px;
   height: 80px;
   background-size: cover;
   background-position: center;
-  display: none; /* Caché par défaut */
+  display: none;
   z-index: 10;
-  left: 50%; /* Centre horizontalement par rapport à .navigation */
-  transform: translateX(-50%); /* Ajuste pour parfaitement centrer */
-  bottom: 100%; /* Positionne la miniature au-dessus */
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 100%;
   margin-bottom: 10px;
 }
 .photo-page .photo-actions .nav-link:hover + #thumbnail-preview {
@@ -522,11 +603,6 @@ p {
   margin-left: auto;
   margin-right: auto;
   position: relative;
-  /* Ajout d'un filtre noir de 50% au survol */
-  /* Montrer le filtre noir au survol */
-  /* Photo overlay visible au survol de photo-item */
-  /* Centrer l'icône œil */
-  /* L'icône plein écran reste en haut à droite */
 }
 .related-photos .photo-gallery, .photos-list .photo-gallery {
   display: grid;
@@ -566,6 +642,7 @@ p {
   opacity: 1;
 }
 .related-photos .photo-overlay, .photos-list .photo-overlay {
+  display: flex;
   position: absolute;
   top: 10px;
   left: 10px;
@@ -575,11 +652,11 @@ p {
   justify-content: flex-end;
   align-items: flex-start;
   gap: 10px;
-  opacity: 0; /* Invisible par défaut */
+  opacity: 0;
   transition: opacity 0.3s ease;
   z-index: 10;
 }
-.related-photos .eye-icon, .related-photos .fullscreen-icon, .photos-list .eye-icon, .photos-list .fullscreen-icon {
+.related-photos .photo-overlay .eye-icon, .related-photos .photo-overlay .fullscreen-icon, .photos-list .photo-overlay .eye-icon, .photos-list .photo-overlay .fullscreen-icon {
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
   padding: 10px;
@@ -592,12 +669,12 @@ p {
   justify-content: center;
   align-items: center;
 }
-.related-photos .eye-icon:hover, .related-photos .fullscreen-icon:hover, .photos-list .eye-icon:hover, .photos-list .fullscreen-icon:hover {
+.related-photos .photo-overlay .eye-icon:hover, .related-photos .photo-overlay .fullscreen-icon:hover, .photos-list .photo-overlay .eye-icon:hover, .photos-list .photo-overlay .fullscreen-icon:hover {
   background-color: rgb(0, 0, 0);
   text-decoration: none;
   border: 2px solid white;
 }
-.related-photos .eye-icon, .photos-list .eye-icon {
+.related-photos .photo-overlay .eye-icon, .photos-list .photo-overlay .eye-icon {
   position: absolute;
   font-size: 45px;
   top: 50%;
@@ -605,11 +682,164 @@ p {
   transform: translate(-50%, -50%);
   z-index: 15;
 }
-.related-photos .fullscreen-icon, .photos-list .fullscreen-icon {
+.related-photos .photo-overlay .fullscreen-icon, .photos-list .photo-overlay .fullscreen-icon {
   position: absolute;
   top: 10px;
   right: 10px;
   z-index: 15;
+}
+.related-photos .photo-overlay .photo-data, .photos-list .photo-overlay .photo-data {
+  font-family: "Poppins";
+  font-size: 14px;
+  color: white;
+  text-transform: uppercase;
+  align-self: flex-end;
+}
+.related-photos .photo-overlay .ref, .photos-list .photo-overlay .ref {
+  margin-right: auto;
+}
+@media (max-width: 768px) {
+  .related-photos .photo-gallery, .photos-list .photo-gallery {
+    grid-template-columns: 1fr;
+  }
+  .related-photos .eye-icon, .photos-list .eye-icon {
+    font-size: 30px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .related-photos .fullscreen-icon, .photos-list .fullscreen-icon {
+    font-size: 20px;
+    top: 10px;
+    right: 10px;
+  }
+}
+
+.lightbox {
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 9998;
+  overflow: auto;
+  animation: lightboxIn 0.3s;
+  display: none;
+  opacity: 0;
+  /* Afficher la modale */
+}
+.lightbox .lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.lightbox .lightbox-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.lightbox .lightbox-navigation .lightbox-link-prev,
+.lightbox .lightbox-navigation .lightbox-link-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  text-decoration: none;
+  color: white;
+  font-family: "Space Mono";
+  font-weight: 400;
+  font-size: 12px;
+  z-index: 9999;
+}
+.lightbox .lightbox-navigation .lightbox-link-prev:hover i,
+.lightbox .lightbox-navigation .lightbox-link-next:hover i {
+  font-weight: bold;
+}
+.lightbox .lightbox-link-prev {
+  left: 20px;
+}
+.lightbox .lightbox-link-next {
+  right: 20px;
+}
+.lightbox .lightbox-close {
+  position: fixed;
+  text-decoration: none;
+  color: white;
+  top: 50px;
+  right: 50px;
+  z-index: 9999;
+}
+.lightbox .lightbox-close:hover {
+  cursor: pointer;
+}
+.lightbox .lightbox-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 50px;
+  margin-right: 50px;
+  min-height: 100vh;
+  z-index: 9998;
+  position: relative;
+}
+.lightbox .lightbox-container img {
+  width: 100%;
+  height: auto;
+  animation: lightboxIn 0.5s;
+}
+.lightbox .lightbox-container .photo-data-ref,
+.lightbox .lightbox-container .photo-data-cat {
+  position: absolute;
+  bottom: 20px;
+  font-family: "Space Mono";
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: white;
+  display: block;
+}
+.lightbox .lightbox-container .photo-data-ref {
+  left: 0;
+  bottom: 0;
+}
+.lightbox .lightbox-container .photo-data-cat {
+  right: 0;
+  bottom: 0;
+}
+.lightbox.show {
+  display: flex; /* Rendre visible */
+  opacity: 1;
+  pointer-events: auto;
+}
+.lightbox.show .lightbox-overlay {
+  opacity: 1;
+}
+.lightbox.show .lightbox-content {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@keyframes lightboxIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* Empêche le défilement lorsque la modale est ouverte */
+.lightbox-open {
+  overflow: hidden;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -107,15 +107,15 @@
 
     #thumbnail-preview {
         position: absolute;
-        width: 80px; /* Taille de la miniature */
+        width: 80px; // Taille de la miniature
         height: 80px;
         background-size: cover;
         background-position: center;
-        display: none; /* Caché par défaut */
+        display: none; // Caché par défaut
         z-index: 10;
-        left: 50%; /* Centre horizontalement par rapport à .navigation */
-        transform: translateX(-50%); /* Ajuste pour parfaitement centrer */
-        bottom: 100%; /* Positionne la miniature au-dessus */
+        left: 50%; // Centre horizontalement par rapport à .navigation
+        transform: translateX(-50%); // Ajuste pour parfaitement centrer
+        bottom: 100%; // Positionne la miniature au-dessus
         margin-bottom: 10px; 
     }
     

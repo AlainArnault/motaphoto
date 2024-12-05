@@ -30,7 +30,7 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 597px;
+        width:clamp(310px, 50vw, 597px) ;
         height: auto;
         background-color: white;
         z-index: 2; /* Au-dessus de l'overlay */
@@ -60,7 +60,7 @@
 
         /* Image dans l'en-tête */
         img {
-            width: 896px; /* Largeur de l'image qui dépasse */
+            width: 150%; /* Largeur de l'image qui dépasse */
             position: relative;
             left: 50%;
             transform: translateX(-50%); /* Centrer l'image horizontalement */
@@ -85,21 +85,19 @@
             }
 
             .form-input {
-                width: 263px;
+                width: clamp(260px, 9vw, 300px);
                 height: 40px;
                 border: 1px solid #ccc;
                 border-radius: 8px;
-                //margin-top: 23px;
                 padding-left: 10px;
                 font-size: 14px;
             }
 
             .message-input {
-                width: 263px;
+                width: clamp(260px, 9vw, 300px);
                 height: 210px;
                 border: 1px solid #ccc;
                 border-radius: 8px;
-                //margin-top: 23px;
                 padding-left: 10px;
                 font-size: 14px;
                 resize: none;
@@ -161,7 +159,7 @@
 }
 
 /* Empêche le défilement lorsque la modale est ouverte */
-body.modal-open {
+.modal-open {
     overflow: hidden;
 }
 
