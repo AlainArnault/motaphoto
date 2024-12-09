@@ -1,75 +1,118 @@
-jQuery(document).ready(function ($) {
-    const lightboxLinks = $('.open-lightbox');
-    const lightbox = $('#lightbox');
-    const lightboxImage = $('#lightbox .lightbox-image');
-    const lightboxReference = $('#lightbox .lightbox-reference');
-    const lightboxCategories = $('#lightbox .lightbox-categories');
+document.addEventListener("DOMContentLoaded", function () {
+    let allPhotoData = []; // Tableau pour stocker les données des photos
+    let allPhotoIds = []; // Tableau des IDs des photos
+    const lightbox = document.getElementById("lightbox");
+    const body = document.body;
+
+    // Fonction pour extraire les données des photos et les ajouter au tableau
+    function updatePhotoData() {
+        // Réinitialiser les tableaux pour inclure toutes les photos actuelles
+        allPhotoData = [];
+        allPhotoIds = [];
     
-    let currentPhotoId = null; // ID de la photo actuelle
-
-    // Stocker les données passées depuis PHP
-    //const allPhotoData = window.photoData; // Les données complètes des photos
-    //const allPhotoIds = allPhotoData.map(photo => photo.id); // Extraire les IDs pour la navigation
-
-    // Fonction pour récupérer les données d'une photo par ID
-    function getPhotoDataById(photoId) {
-        return allPhotoData.find(photo => photo.id === photoId);
+        const lightboxLinks = document.querySelectorAll(".open-lightbox"); // Sélectionner tous les liens de la lightbox
+    
+        lightboxLinks.forEach(link => {
+            const photoId = link.dataset.photoId; // Récupérer les attributs data-*
+            const thumbnailUrl = link.dataset.thumbnail;
+            const reference = link.dataset.reference;
+            const categories = link.dataset.categories;
+    
+            // Ajouter toutes les photos, puisqu'on réinitialise les tableaux
+            allPhotoData.push({
+                id: photoId,
+                thumbnailUrl: thumbnailUrl,
+                reference: reference,
+                categories: categories,
+            });
+            allPhotoIds.push(photoId);
+        });
+    
+        // DEBUG : Afficher les données mises à jour
+        console.log("Mise à jour des données des photos :", allPhotoData);
+        console.log("Mise à jour des IDs :", allPhotoIds);
     }
 
+    // Fonction pour mettre à jour la lightbox avec les informations de la photo
+    function updateLightboxWithPhoto(photoId) {
+        const photoData = allPhotoData.find(photo => photo.id === photoId);
 
-    // Gérer les clics sur les liens vers la lightbox
-    lightboxLinks.on('click', function (event) {
-        event.preventDefault();
-        
-        currentPhotoId = $(this).data('photo-id');
-        console.log('ID de la photo courante :', currentPhotoId)
-        let thumbnailUrl = $(this).data('thumbnail');
-        let reference = $(this).data('reference');
-        let categories = $(this).data('categories');
-        
-        lightboxImage.attr('src', thumbnailUrl);
-        lightboxImage.attr('alt', reference);
-        lightboxReference.text('Référence : ' + reference);
-        lightboxCategories.text('Catégories : ' + categories);
+        if (photoData) {
+            const lightboxImage = lightbox.querySelector(".lightbox-image");
+            const lightboxReference = lightbox.querySelector(".lightbox-reference");
+            const lightboxCategories = lightbox.querySelector(".lightbox-categories");
 
-        lightbox.addClass('show');
-        $('body').addClass('lightbox-open');
-    });
+            lightboxImage.src = photoData.thumbnailUrl;
+            lightboxImage.alt = photoData.reference;
+            lightboxReference.textContent = "Référence : " + photoData.reference;
+            lightboxCategories.textContent = "Catégories : " + photoData.categories;
+        }
+    }
+
+    // Fonction pour gérer les clics sur les liens de la lightbox
+    function attachLightboxEvents() {
+        const lightboxLinks = document.querySelectorAll(".open-lightbox");
+
+        lightboxLinks.forEach(link => {
+            link.addEventListener("click", function (event) {
+                event.preventDefault();
+
+                // Récupérer l'ID de la photo actuelle
+                const currentPhotoId = link.dataset.photoId;
+
+                // Mettre à jour le contenu de la lightbox
+                updateLightboxWithPhoto(currentPhotoId);
+
+                // Ouvrir la lightbox
+                lightbox.classList.add("show");
+                body.classList.add("lightbox-open");
+            });
+        });
+    }
+
+    // Initialiser les données et les événements
+    updatePhotoData();
+    attachLightboxEvents();
+
+    // Navigation dans la lightbox
+    let currentPhotoId = null;
 
     // Navigation vers la photo précédente
-    $('.lightbox-link-prev').on('click', function (e) {
+    document.querySelector(".lightbox-link-prev").addEventListener("click", function (e) {
         e.preventDefault();
-        let currentIndex = allPhotoIds.indexOf(currentPhotoId);
-        let prevIndex = (currentIndex - 1 + allPhotoIds.length) % allPhotoIds.length; // Utilisation de modulo pour boucle infinie
+        const currentIndex = allPhotoIds.indexOf(currentPhotoId);
+        const prevIndex = (currentIndex - 1 + allPhotoIds.length) % allPhotoIds.length; // Boucle infinie
         currentPhotoId = allPhotoIds[prevIndex];
 
         updateLightboxWithPhoto(currentPhotoId);
     });
 
     // Navigation vers la photo suivante
-    $('.lightbox-link-next').on('click', function (e) {
+    document.querySelector(".lightbox-link-next").addEventListener("click", function (e) {
         e.preventDefault();
-        let currentIndex = allPhotoIds.indexOf(currentPhotoId);
-        let nextIndex = (currentIndex + 1) % allPhotoIds.length; // Utilisation de modulo pour boucle infinie
+        const currentIndex = allPhotoIds.indexOf(currentPhotoId);
+        const nextIndex = (currentIndex + 1) % allPhotoIds.length; // Boucle infinie
         currentPhotoId = allPhotoIds[nextIndex];
 
         updateLightboxWithPhoto(currentPhotoId);
     });
 
-    // Fonction pour mettre à jour la lightbox avec les informations de la nouvelle photo
-    function updateLightboxWithPhoto(photoId) {
-        const photoData = getPhotoDataById(photoId); // Fonction à définir pour récupérer les données (url, référence, catégories)
-
-        lightboxImage.attr('src', photoData.thumbnailUrl);
-        lightboxImage.attr('alt', photoData.reference);
-        lightboxReference.text('Référence : ' + photoData.reference);
-        lightboxCategories.text('Catégories : ' + photoData.categories);
-    }
-
-    // Fermer la lightbox lorsqu'on clique sur le bouton de fermeture ou l'overlay
-    $('.lightbox-close, .lightbox-overlay').on('click', function () {
-        lightbox.removeClass('show');
-        $('body').removeClass('lightbox-open');
+    // Fermer la lightbox
+    document.querySelectorAll(".lightbox-close, .lightbox-overlay").forEach(element => {
+        element.addEventListener("click", function () {
+            lightbox.classList.remove("show");
+            body.classList.remove("lightbox-open");
+        });
     });
+
+    // Réagir après le chargement de nouvelles photos
+    document.addEventListener("newPhotosLoaded", function () {
+        updatePhotoData(); // Mettre à jour les données avec les nouvelles photos
+        attachLightboxEvents(); // Réattacher les événements de la lightbox
+    });
+
+    window.updatePhotoData = updatePhotoData;
 });
+
+
 

@@ -6,7 +6,6 @@ function motaphoto_enqueue_styles() {
 }
 add_action('wp_enqueue_scripts', 'motaphoto_enqueue_styles');
 
-
 // Ajouter la prise en charge des images mises en avant
 add_theme_support( 'post-thumbnails' );
 
@@ -49,6 +48,28 @@ function ajouter_scripts_modale() {
     );
 }
 add_action('wp_enqueue_scripts', 'ajouter_scripts_modale');
+
+
+// Ajout script lightbox
+// Charger les scripts et styles nécessaires
+function enqueue_lightbox_scripts_with_wp_api() {
+    // Charger le script WordPress wp-api
+    wp_enqueue_script('wp-api');
+
+    // Charger le script de la lightbox
+    wp_enqueue_script(
+        'lightbox-js',
+        get_template_directory_uri() . '/js/lightbox.js',
+        array('jquery'),
+        null,
+        true
+    );
+
+    
+
+}
+add_action('wp_enqueue_scripts', 'enqueue_lightbox_scripts_with_wp_api');
+
 
 // Fonction pour charger plus de photos (bouton et pagination infinie) 
 function load_more_photos() {
@@ -95,6 +116,7 @@ function load_more_photos() {
 // Ajout des hooks pour le callback AJAX
 add_action('wp_ajax_load_more_photos', 'load_more_photos'); 
 add_action('wp_ajax_nopriv_load_more_photos', 'load_more_photos'); // Pour les utilisateurs non connectés
+
 
 // Enregistrement du script JS pour charger plus de photos
 function enqueue_load_more_script() {
@@ -194,22 +216,4 @@ function enqueue_filter_script() {
 }
 add_action('wp_enqueue_scripts', 'enqueue_filter_script');
 
-// Ajout script lightbox
-// Charger les scripts et styles nécessaires
-function enqueue_lightbox_scripts_with_wp_api() {
-    // Charger le script WordPress wp-api
-    wp_enqueue_script('wp-api');
 
-    // Charger le script de la lightbox
-    wp_enqueue_script(
-        'lightbox-js',
-        get_template_directory_uri() . '/js/lightbox.js',
-        array('jquery'),
-        null,
-        true
-    );
-
-    
-
-}
-add_action('wp_enqueue_scripts', 'enqueue_lightbox_scripts_with_wp_api');
