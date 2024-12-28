@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function () {
         attachLightboxEvents(); // Réattacher les événements de la lightbox
     });
 
-    window.updatePhotoData = updatePhotoData;
+    window.updatePhotoData = updatePhotoData; // Rendre accessible la fonction aux scripts de la page
 });
 
 

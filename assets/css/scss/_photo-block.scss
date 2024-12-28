@@ -123,8 +123,11 @@
 
     // Media Query pour les petits écrans
     @media (max-width: 768px) {
+
         .photo-gallery {
             grid-template-columns: 1fr; // Une seule colonne
+            margin-left: 8%;
+            margin-right: 8%;
         }
  
         .eye-icon { // Réduction de la taille des icônes

@@ -45,6 +45,9 @@
             font-weight: 400;
             font-size: 12px;
             z-index: 9999;
+            @media (max-width: 768px) {
+                top: 80%;
+            }
         
             &:hover {
                 i {
@@ -100,6 +103,9 @@
             text-transform: uppercase;
             color: white;
             display: block;
+            @media (max-width: 768px) {
+                font-size: 10px;
+            }
         }
 
         .photo-data-ref {
@@ -139,5 +145,6 @@
 .lightbox-open {
     overflow: hidden;
 }
+
 
 

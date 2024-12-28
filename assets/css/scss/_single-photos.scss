@@ -141,22 +141,16 @@
 
 // Responsive design pour petits écrans
 @media (max-width: 768px) {
+  .related-photos h3 {
+    margin-left: 8%;
+}
   .photo-page {
-    grid-template-columns: 1fr; // Passe à une seule colonne sur petits écrans
-    grid-template-areas:
-      "photo-info"
-      "photo-image-container"
-      "photo-actions"; // Les trois sections prennent toute la largeur
-    align-items: stretch; // Permet aux sections de prendre toute la largeur
-  }
+    margin : 10%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
 
-  .photo-info,
-  .photo-image-container {
-    width: 100%; // Prend toute la largeur sur petits écrans
-    padding: 10px;
-  }
-
-  .photo-actions {
+    .photo-actions {
     flex-direction: column;
     height: auto;
 
@@ -165,7 +159,27 @@
     }
 
     .navigation {
-      justify-content: center;
+      display: none;
+    }
+
+    .contact-us {
+      display: flex;
+      flex-direction: column;
+      width: 90%;
+      justify-content: left;
+      align-items: flex-start;
+      margin: 5%;
+    }
+  }}
+
+  .photo-image-container {
+    img {
+      height: auto; 
     }
   }
+
+  .photo-info {
+    padding-left: 0 !important;
+  }
+
 }

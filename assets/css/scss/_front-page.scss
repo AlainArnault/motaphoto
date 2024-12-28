@@ -94,10 +94,86 @@ html, body {
                 font-size: 12px;
                 font-weight: 500;
                 text-transform: uppercase;
+                &:focus {
+                    border-color: #215AFF;
+                }
+                & option:hover {
+                        background-color: #E00000;
+                        color: white
+
+                }
             }
         }
     }
 }
+
+/* Personnaliser les options */
+.select2-results__option {
+    padding: 10px;
+    color: black; /* Couleur du texte */
+    background-color: #fff; /* Couleur de fond par défaut */
+    font-family: 'Poppins'!important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Couleur au survol */
+.select2-results__option--highlighted {
+    background-color: red !important; /* Couleur de fond au survol */
+    color: white !important; /* Couleur du texte au survol */
+}
+
+/* Personnalisation générale */
+.select2-container .select2-selection--single {
+    //width: 10vw !important;
+    size: auto !important;
+    height: auto !important;
+    overflow: hidden !important;
+    padding: 0.4vw 0.6vw !important;
+    border: 1.3px solid #B8BBC2 !important;
+    border-radius: 8px !important;
+    background: white !important;
+    color: black !important;
+    font-family: 'Poppins'!important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
+}
+
+.select2-selection__placeholder {
+    color: black !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: black !important;
+    //line-height: 1.5;
+}
+
+.select2-selection__arrow {
+    height: 100% !important;
+}
+
+.select2-dropdown {
+    border: none !important;
+}
+
+.select2-container--open .select2-selection--single , .select2-container--focus .select2-selection--single {
+    border-color: #215AFF !important;
+    border-bottom-right-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}
+
+.select2-results__options {
+    border-bottom-right-radius: 8px !important;
+    border-bottom-left-radius: 8px !important;
+}
+
+.select2-search {
+    display: none;
+}
+
 
 @media (max-width: 768px) {
     .hero {

@@ -1,4 +1,17 @@
 <?php
+//Balises Select
+function enqueue_select2_assets() {
+    // Ajouter le CSS de Select2
+    wp_enqueue_style('select2-css', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/css/select2.min.css');
+
+    // Ajouter le JS de Select2
+    wp_enqueue_script('select2-js', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/js/select2.min.js', array('jquery'), null, true);
+
+    // Ajouter le script personnalisé
+    wp_enqueue_script('custom-select2', get_template_directory_uri() . '/js/filter.js', array('jquery', 'select2-js'), null, true);
+}
+add_action('wp_enqueue_scripts', 'enqueue_select2_assets');
+
 // Ajouter le feuille de Style
 function motaphoto_enqueue_styles() {
     wp_enqueue_style('motaphoto-style', get_stylesheet_uri());
@@ -136,6 +149,7 @@ function enqueue_load_more_script() {
 add_action('wp_enqueue_scripts', 'enqueue_load_more_script');
 
 
+
 // Filtres et tri
 function load_filtered_photos() {
     // Vérification du nonce pour la sécurité
@@ -215,5 +229,7 @@ function enqueue_filter_script() {
     ));
 }
 add_action('wp_enqueue_scripts', 'enqueue_filter_script');
+
+
 
 

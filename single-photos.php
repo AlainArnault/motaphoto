@@ -25,6 +25,11 @@ while ( have_posts() ) :
     // Structure HTML
     ?>
     <div class="photo-page">
+        <div class="photo-image-container">
+            <?php if (has_post_thumbnail()) : ?>
+                <?php echo get_the_post_thumbnail(null, 'large'); ?>
+            <?php endif; ?>
+        </div>
         <div class="photo-info">
             <h2><?php the_title(); ?></h2>
             <p class="photo-description">Référence : <?php echo esc_html($reference); ?></p>
@@ -32,11 +37,6 @@ while ( have_posts() ) :
             <p class="photo-description">Format : <?php echo implode(', ', $format_names); ?></p>
             <p class="photo-description">Type : <?php echo esc_html($type); ?></p>
             <p class="photo-description">Année : <?php echo esc_html($year_taken); ?></p>
-        </div>
-        <div class="photo-image-container">
-            <?php if (has_post_thumbnail()) : ?>
-                <?php echo get_the_post_thumbnail(null, 'large'); ?>
-            <?php endif; ?>
         </div>
         <div class="photo-actions">
             <div class="contact-us">

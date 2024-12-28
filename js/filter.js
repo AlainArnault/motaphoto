@@ -64,4 +64,20 @@ jQuery(document).ready(function ($) {
             },
         });
     });
+        // Appliquer Select2 à tous les selects souhaités
+        $('#filter-category').select2({
+            dropdownCssClass: 'custom-dropdown', // Classe pour personnaliser le dropdown
+            placeholder: "Catégories",
+            allowClear: true
+        });
+        $('#filter-format').select2({
+            dropdownCssClass: 'custom-dropdown', // Classe pour personnaliser le dropdown
+            placeholder: "Format",
+            allowClear: true
+        });
+        $('#filter-date').select2({
+            dropdownCssClass: 'custom-dropdown', // Classe pour personnaliser le dropdown
+            placeholder: "Trier par",
+            allowClear: true
+        });
 });
